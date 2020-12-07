@@ -16,7 +16,7 @@ public class ExampleListener implements Listener { // Implement bukkit listener
     /**
      *
      * The Autowired Annotation, it will automatically inject bean into the marked field
-     * For example in this case, i want to get Our Plugin Instance, so we put the Example variable
+     * For example in this case, I want to get Our Plugin Instance, so we put the Example variable
      * While it start up, the Example instance will be automatically injected and you can use it
      *
      */
@@ -29,7 +29,5 @@ public class ExampleListener implements Listener { // Implement bukkit listener
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-
     }
-
 }

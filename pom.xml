@@ -62,6 +62,13 @@
         </resources>
     </build>
 
+    <repositories>
+        <repository>
+            <id>imanity-repo</id>
+            <url>https://maven.imanity.dev/repository/imanity-libraries/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- Your Spigot Core -->
         <dependency>
