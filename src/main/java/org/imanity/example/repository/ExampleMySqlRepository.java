@@ -4,7 +4,6 @@ import org.imanity.example.configuration.ExampleH2Configuration;
 import org.imanity.example.configuration.ExampleMySqlConfiguration;
 import org.imanity.example.data.ExampleData;
 import org.imanity.framework.*;
-import org.imanity.framework.cache.Unless;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
@@ -22,7 +21,7 @@ public class ExampleMySqlRepository extends SQLRepository<ExampleData, UUID> { /
         return ExampleData.class;
     }
 
-    @Cacheable(key = "'example-' + args[0]", forever = true, unless = Unless.ResultIsNull.class) // Cache the example data if it's wasn't null from
+    @Cacheable(key = "'example-' + args[0]", forever = true, condition = "retVal == null") // Cache the example data if it's wasn't null from
     public ExampleData find(@Nonnull UUID uuid) {
         return super.findById(uuid).orElseGet(() -> new ExampleData(uuid));
     }
