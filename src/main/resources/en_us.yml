@@ -1,0 +1,6 @@
+locale: en_us
+join_message: "&eWelcome to this server!"
+join_broadcast:
+  title: "&e<player> &fjoined the server!"
+  sub_title: "&6Welcome!"
+  message: "&e<player> &fjoined the server! &6Welcome!"

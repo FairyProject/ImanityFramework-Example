@@ -29,4 +29,9 @@ public class ExampleMySqlConfiguration extends SimpleMySqlConfiguration {
     public String password() {
         return "password";
     }
+
+    @Override
+    public boolean shouldActivate() {
+        return false;
+    }
 }
