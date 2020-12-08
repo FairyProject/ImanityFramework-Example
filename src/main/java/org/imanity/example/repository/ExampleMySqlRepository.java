@@ -1,9 +1,9 @@
 package org.imanity.example.repository;
 
+import org.imanity.example.configuration.ExampleH2Configuration;
 import org.imanity.example.configuration.ExampleMySqlConfiguration;
 import org.imanity.example.data.ExampleData;
 import org.imanity.framework.*;
-import org.imanity.framework.cache.Unless;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
@@ -13,7 +13,7 @@ import java.util.UUID;
  * The Repository to store data
  */
 @Service(name = "example-repository")
-@ProvideConfiguration(ExampleMySqlConfiguration.class) // Specific Configuration to use in this repository
+@ProvideConfiguration(ExampleH2Configuration.class) // Specific Configuration to use in this repository
 public class ExampleMySqlRepository extends SQLRepository<ExampleData, UUID> { // <Entity, Id>
 
     @Override
@@ -21,13 +21,12 @@ public class ExampleMySqlRepository extends SQLRepository<ExampleData, UUID> { /
         return ExampleData.class;
     }
 
-    @Cacheable(key = "example-$(arg0)", forever = true, unless = Unless.ResultOptionalIsNull.class)
-    @Override
-    public Optional<ExampleData> findById(@Nonnull UUID uuid) {
-        return super.findById(uuid);
+    @Cacheable(key = "'example-' + args[0]", forever = true, condition = "retVal != null") // Cache the example data if it's wasn't null from
+    public ExampleData find(@Nonnull UUID uuid) {
+        return super.findById(uuid).orElseGet(() -> new ExampleData(uuid));
     }
 
-    @CacheEvict("example-$(arg0.uuid)")
+    @CacheEvict("'example-' + args[0].getUuid()")
     @Async
     public <S extends ExampleData> void saveExample(S pojo) {
         super.save(pojo);

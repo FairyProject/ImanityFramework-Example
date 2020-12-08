@@ -3,6 +3,7 @@ package org.imanity.example.data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.UUID;
 
 @Entity // mark this as an Entity
@@ -17,11 +18,17 @@ public class ExampleData {
     private int deaths;
     private int wins;
 
+    @Transient // Ignore this field
+    private Status status;
+
     public ExampleData() {
+        this.status = Status.IN_LOBBY;
         // EMPTY CONSTRUCTOR ARE REQUIRED
     }
 
     public ExampleData(UUID uuid) {
+        this();
+        this.uuid = uuid;
         // Easier way to create data instance
     }
 
@@ -56,6 +63,21 @@ public class ExampleData {
 
     public void setWins(int wins) {
         this.wins = wins;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public static enum Status {
+
+        IN_LOBBY,
+        IN_GAME
+
     }
 
 }

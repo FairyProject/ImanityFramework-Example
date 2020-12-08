@@ -1,0 +1,6 @@
+locale: zh_tw
+join_message: "&e歡迎來到這個伺服器!"
+join_broadcast:
+  title: "&e<player> &f加入了伺服器!"
+  sub_title: "&6讓我們歡迎他!"
+  message: "&e<player> &f加入了伺服器! &6讓我們歡迎他!"
