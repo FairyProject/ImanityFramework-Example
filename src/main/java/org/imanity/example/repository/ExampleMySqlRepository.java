@@ -21,7 +21,7 @@ public class ExampleMySqlRepository extends SQLRepository<ExampleData, UUID> { /
         return ExampleData.class;
     }
 
-    @Cacheable(key = "'example-' + args[0]", forever = true, condition = "retVal == null") // Cache the example data if it's wasn't null from
+    @Cacheable(key = "'example-' + args[0]", forever = true, condition = "retVal != null") // Cache the example data if it's wasn't null from
     public ExampleData find(@Nonnull UUID uuid) {
         return super.findById(uuid).orElseGet(() -> new ExampleData(uuid));
     }
