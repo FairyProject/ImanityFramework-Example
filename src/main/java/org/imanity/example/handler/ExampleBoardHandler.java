@@ -42,20 +42,20 @@ public class ExampleBoardHandler implements ImanityBoardAdapter {
     */
     @Override
     public List<String> getLines(Player player) {
-        List<String> toReturn = new ArrayList<>();
+        List<String> lines = new ArrayList<>();
 
-        toReturn.add(" ");
-        toReturn.add("§eHi: §6" + player.getName());
-        toReturn.add("§eWorld: §6" + player.getWorld().getName());
+        lines.add(" ");
+        lines.add("§eHi: §6" + player.getName());
+        lines.add("§eWorld: §6" + player.getWorld().getName());
 
         if (player.getName().equals("LeeGod")) {
-            toReturn.add("§cWow you're a crazy developer!");
+            lines.add("§cWow you're a crazy developer!");
         }
 
-        toReturn.add(" ");
-        toReturn.add(ChatColor.BLUE + "my.coolserver.com");
+        lines.add(" ");
+        lines.add(ChatColor.BLUE + "my.coolserver.com");
 
-        return toReturn;
+        return lines;
     }
 
 

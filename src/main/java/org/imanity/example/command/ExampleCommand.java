@@ -15,7 +15,7 @@ public class ExampleCommand implements CommandHolder {
     @Autowired
     private TimerHandler timerHandler;
 
-    @Command(names = "example")
+    @Command(names = "example", permissionNode = "example.command.admin")
     public void example(BukkitCommandEvent event) {
         this.timerHandler.add(new ExampleTimer());
 
