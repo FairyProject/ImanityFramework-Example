@@ -1,17 +1,25 @@
 package org.imanity.example.command;
 
-import org.bukkit.entity.Player;
+import org.bukkit.ChatColor;
+import org.imanity.example.timer.ExampleTimer;
+import org.imanity.framework.Autowired;
 import org.imanity.framework.Component;
 import org.imanity.framework.bukkit.command.event.BukkitCommandEvent;
+import org.imanity.framework.bukkit.timer.TimerHandler;
 import org.imanity.framework.command.annotation.Command;
-import org.imanity.framework.command.annotation.Parameter;
+import org.imanity.framework.command.annotation.CommandHolder;
 
-// This tag let framework know this is a part of component, add this so framework can scan this class
-// And by this you don't need to do any registerCommand thing, it will be automatically scanned
 @Component
-public class ExampleCommand {
+public class ExampleCommand implements CommandHolder {
 
-    @Command(names = { "example" }, permissionNode = "framework.command.example")
-    public void example(BukkitCommandEvent event, @Parameter(name = "player")Player player) {
+    @Autowired
+    private TimerHandler timerHandler;
+
+    @Command(names = "example")
+    public void example(BukkitCommandEvent event) {
+        this.timerHandler.add(new ExampleTimer());
+
+        event.getSender().sendMessage(ChatColor.RED + "You started the TIMER!");
     }
 }
+

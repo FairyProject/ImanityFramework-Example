@@ -1,8 +1,13 @@
 package org.imanity.example;
 
 import org.imanity.example.configuration.ExampleConfiguration;
+import org.imanity.example.handler.ExampleBoardHandler;
+import org.imanity.example.handler.ExampleBossBarHandler;
+import org.imanity.example.handler.ExampleMovementHandler;
+import org.imanity.example.handler.ExampleTablistHandler;
 import org.imanity.framework.Autowired;
 import org.imanity.framework.ClasspathScan;
+import org.imanity.framework.bukkit.Imanity;
 import org.imanity.framework.bukkit.plugin.ImanityPlugin;
 import org.imanity.framework.bukkit.util.CustomLocation;
 import org.imanity.framework.locale.LocaleHandler;
@@ -51,6 +56,11 @@ public class Example extends ImanityPlugin {
 
         localeHandler.registerFromYml(this.getResource("zh_tw.yml"));
         localeHandler.registerFromYml(this.getResource("en_us.yml"));
+
+        Imanity.registerBossBarHandler(new ExampleBossBarHandler());
+        Imanity.registerBoardHandler(new ExampleBoardHandler());
+        Imanity.registerTablistHandler(new ExampleTablistHandler());
+        Imanity.registerMovementListener(new ExampleMovementHandler());
 
     }
 

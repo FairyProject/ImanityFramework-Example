@@ -17,6 +17,7 @@ public class ExampleData {
     private int kills;
     private int deaths;
     private int wins;
+    private double monney;
 
     @Transient // Ignore this field
     private Status status;
@@ -34,7 +35,7 @@ public class ExampleData {
 
     // Getters and Setters
     public UUID getUuid() {
-        return uuid;
+        return this.uuid;
     }
 
     public void setUuid(UUID uuid) {
@@ -42,7 +43,7 @@ public class ExampleData {
     }
 
     public int getKills() {
-        return kills;
+        return this.kills;
     }
 
     public void setKills(int kills) {
@@ -50,7 +51,7 @@ public class ExampleData {
     }
 
     public int getDeaths() {
-        return deaths;
+        return this.deaths;
     }
 
     public void setDeaths(int deaths) {
@@ -58,15 +59,23 @@ public class ExampleData {
     }
 
     public int getWins() {
-        return wins;
+        return this.wins;
     }
 
     public void setWins(int wins) {
         this.wins = wins;
     }
 
+    public double getMonney() {
+        return this.monney;
+    }
+
+    public void addMonney(double monney) {
+        this.monney += monney;
+    }
+
     public Status getStatus() {
-        return status;
+        return this.status;
     }
 
     public void setStatus(Status status) {
