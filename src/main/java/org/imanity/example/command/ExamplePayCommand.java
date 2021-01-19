@@ -29,7 +29,7 @@ public class ExamplePayCommand implements CommandHolder {
         ExampleData targetData = this.mySqlRepository.find(target.getUniqueId());
         ExampleData senderData = this.mySqlRepository.find(player.getUniqueId());
 
-        if (senderData.getMonney() >= monney) {
+        if (senderData.getMoney() >= monney) {
 
             targetData.addMonney(monney);
             senderData.addMonney(-monney);

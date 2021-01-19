@@ -3,6 +3,7 @@ package org.imanity.example.handler;
 import org.bukkit.ChatColor;
 import org.imanity.example.timer.ExampleTimer;
 import org.imanity.framework.Autowired;
+import org.imanity.framework.ImanityCommon;
 import org.imanity.framework.bukkit.bossbar.BossBar;
 import org.imanity.framework.bukkit.bossbar.BossBarAdapter;
 import org.imanity.framework.bukkit.bossbar.BossBarData;
@@ -20,6 +21,10 @@ public class ExampleBossBarHandler implements BossBarAdapter {
      */
     @Autowired
     private TimerHandler timerHandler;
+
+    public ExampleBossBarHandler() {
+        ImanityCommon.injectBean(this); // Since this isn't a bean instance so it requires injectBean() to inject @Autowired fields
+    }
 
     /**
      *

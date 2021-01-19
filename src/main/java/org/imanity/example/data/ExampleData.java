@@ -17,7 +17,7 @@ public class ExampleData {
     private int kills;
     private int deaths;
     private int wins;
-    private double monney;
+    private double money;
 
     @Transient // Ignore this field
     private Status status;
@@ -66,12 +66,12 @@ public class ExampleData {
         this.wins = wins;
     }
 
-    public double getMonney() {
-        return this.monney;
+    public double getMoney() {
+        return this.money;
     }
 
     public void addMonney(double monney) {
-        this.monney += monney;
+        this.money += monney;
     }
 
     public Status getStatus() {

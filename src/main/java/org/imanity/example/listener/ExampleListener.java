@@ -12,7 +12,6 @@ import org.imanity.framework.Autowired;
 import org.imanity.framework.Component;
 import org.imanity.framework.bukkit.Imanity;
 import org.imanity.framework.bukkit.util.LocaleRV;
-import org.imanity.framework.locale.LocaleRepository;
 
 // This tag let framework know this is a part of component, add this so framework can scan this class
 // And by this you don't need to do any registerListener thing, it will be automatically scanned
@@ -66,7 +65,7 @@ public class ExampleListener implements Listener { // Implement bukkit listener
                 .async(() -> {
                     ExampleData data = this.mySqlRepository.find(player.getUniqueId());
 
-                    this.mySqlRepository.saveExample(data);
+                    this.mySqlRepository.saveAndDelete(data);
                 }).execute();
     }
 

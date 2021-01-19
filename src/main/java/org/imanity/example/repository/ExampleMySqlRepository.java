@@ -21,14 +21,14 @@ public class ExampleMySqlRepository extends SQLRepository<ExampleData, UUID> { /
         return ExampleData.class;
     }
 
-    @Cacheable(key = "'example-' + args[0]", forever = true, condition = "retVal != null") // Cache the example data if it's wasn't null from
+    @Cacheable(key = "'example-' + #args[0]", forever = true, condition = "#retVal != null") // Cache the example data if it's wasn't null from
     public ExampleData find(@Nonnull UUID uuid) {
         return super.findById(uuid).orElseGet(() -> new ExampleData(uuid));
     }
 
-    @CacheEvict("'example-' + args[0].getUuid()")
-    @Async
-    public <S extends ExampleData> void saveExample(S pojo) {
+    @CacheEvict("'example-' + #args[0].getUuid()") // Remove the cache
+    @Async // Run in async
+    public <S extends ExampleData> void saveAndDelete(S pojo) {
         super.save(pojo);
     }
 

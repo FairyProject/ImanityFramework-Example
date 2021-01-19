@@ -1,5 +1,6 @@
 package org.imanity.example;
 
+import org.bukkit.Bukkit;
 import org.imanity.example.configuration.ExampleConfiguration;
 import org.imanity.example.handler.ExampleBoardHandler;
 import org.imanity.example.handler.ExampleBossBarHandler;
@@ -8,7 +9,7 @@ import org.imanity.example.handler.ExampleTablistHandler;
 import org.imanity.framework.Autowired;
 import org.imanity.framework.ClasspathScan;
 import org.imanity.framework.bukkit.Imanity;
-import org.imanity.framework.bukkit.plugin.ImanityPlugin;
+import org.imanity.framework.bukkit.plugin.BukkitPlugin;
 import org.imanity.framework.bukkit.util.CustomLocation;
 import org.imanity.framework.locale.LocaleHandler;
 import org.imanity.framework.plugin.Plugin;
@@ -30,7 +31,7 @@ import java.io.File;
         type = PluginType.BUKKIT                              // Type
 )
 @ClasspathScan("org.imanity.example")
-public class Example extends ImanityPlugin {
+public class Example extends BukkitPlugin {
 
     private ExampleConfiguration configuration;
 
@@ -38,13 +39,13 @@ public class Example extends ImanityPlugin {
     private LocaleHandler localeHandler;
 
     @Override
-    public void preEnable() {
-        // Before Imanity Framework boot up
+    public void onPreEnable() {
+        // Before Imanity Framework initalize this plugin
     }
 
     @Override
-    public void postEnable() {
-        // After Imanity Framework boot up, most of things are recommend to be done in here
+    public void onPluginEnable() {
+        // After Imanity Framework initalize to this plugin
 
         File file = this.getDataFolder();
         if (!file.exists()) {
@@ -65,13 +66,13 @@ public class Example extends ImanityPlugin {
     }
 
     @Override
-    public void preDisable() {
-        // Before Imanity Framework shut down, most of things are recommend to be done in here
+    public void onPluginDisable() {
+        // Plugin shutdown, and Before Imanity Framework shut down
     }
 
     @Override
-    public void postDisable() {
-        // After Imanity Framework shut down
+    public void onFrameworkFullyDisable() {
+        // After Imanity Framework fully shut down
     }
 
     public CustomLocation getSpawnLocation() {
