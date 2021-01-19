@@ -13,6 +13,8 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- Encoding -->
+
+        <framework.version>0.2-SNAPSHOT</framework.version>
     </properties>
 
     <build>
@@ -80,7 +82,7 @@
         <dependency>
             <groupId>org.imanity.framework</groupId>
             <artifactId>bukkit-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${framework.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

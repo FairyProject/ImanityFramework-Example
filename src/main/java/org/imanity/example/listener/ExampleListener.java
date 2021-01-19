@@ -36,12 +36,15 @@ public class ExampleListener implements Listener { // Implement bukkit listener
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
+        // Task Chain System
         Imanity.TASK_CHAIN_FACTORY.newChain()
+                // Run in async first
                 .async(() -> {
                     ExampleData data = this.mySqlRepository.find(player.getUniqueId());
 
                     data.setStatus(ExampleData.Status.IN_LOBBY);
                 })
+                // After first task done, run second task in sync
                 .sync(() -> {
                     this.examplePlugin.getSpawnLocation().teleport(player, 1.0D);
 

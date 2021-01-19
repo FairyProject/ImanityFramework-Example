@@ -17,7 +17,7 @@ public class ExampleTablistHandler implements ImanityTabAdapter {
 
         tabObjects.add(new BufferedTabObject().text("§dFirst column").column(TabColumn.LEFT));
         tabObjects.add(new BufferedTabObject().text("§5Second column").column(TabColumn.MIDDLE));
-        tabObjects.add(new BufferedTabObject().text("You also can custom ping, skin...").ping(200).skin(Skin.fromPlayer(player)));
+        tabObjects.add(new BufferedTabObject().text("You also can custom ping, skin...").ping(200).skin(Skin.fromPlayer(player)).column(TabColumn.RIGHT));
 
         return tabObjects;
     }
