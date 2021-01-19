@@ -5,9 +5,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.imanity.example.Example;
-import org.imanity.framework.Autowired;
+import org.imanity.framework.BeanConstructor;
 import org.imanity.framework.Component;
-import org.imanity.framework.PostInitialize;
 import org.imanity.framework.bukkit.listener.FilteredEventList;
 import org.imanity.framework.bukkit.listener.FilteredListener;
 import org.imanity.framework.bukkit.listener.annotation.IgnoredFilters;
@@ -19,7 +18,7 @@ public class ExampleFilteredListener extends FilteredListener<Example> { // Filt
 
     /**
      *
-     * This is a extension of normal Listener
+     * This is an extension of normal Listener
      *
      * basically you can add a filter to it, and every time before calling the event
      * It needs to pass the filter you put in
@@ -28,19 +27,8 @@ public class ExampleFilteredListener extends FilteredListener<Example> { // Filt
      *
      */
 
-    /**
-     *
-     * The Autowired Annotation, it will automatically inject bean into the marked field
-     * For example in this case, I want to get the Example instance, so we put the Example variable
-     * While it start up, the Example instance will be automatically injected and you can use it
-     *
-     */
-    @Autowired
-    private Example plugin;
-
-    @PostInitialize
-    public void init() {
-
+    @BeanConstructor // This annotation let's framework know that you'll be using this constructor to construct this instance
+    public ExampleFilteredListener(Example plugin) { // Anything that is bean can be placed in bean constructor, it's will automatically search beans for it, and since Example is a plugin, and by default plugins will be registered as bean in framework
         this.initial(plugin, FilteredEventList.builder()
                 .filter((player, event) -> player.isOp()) // In this example we want every event related to player, the player need to be an OP
                 .build());
